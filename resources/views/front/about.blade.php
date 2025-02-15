@@ -4,10 +4,11 @@
 
 @endsection
 
-@section('title', 'Sayfa Başlığı')
+@section('title', 'Hakkımızda')
 
 @section('content')
     <h1>Hakkımızda</h1>
+    <br>
 
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
 @endsection

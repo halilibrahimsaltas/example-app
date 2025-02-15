@@ -6,6 +6,9 @@
 
 @section('content')
     <h1>Anasayfa</h1>
+    <br>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
 @endsection
 
 @section('js')

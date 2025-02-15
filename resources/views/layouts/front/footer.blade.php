@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-md-4">
                 <h5>Hakkımızda</h5>
+                <br>
 
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
             </div>
