@@ -20,3 +20,7 @@ Route::match(["get", "post"], "support-form", [SupportFormController::class, "su
 Route::patch("user/{id}/guncelle", [ContactController::class, "update"])->name("user.update");
 
 Route::put("user/{id}/guncelle", [ContactController::class, "update"])->name("user.update");
+
+Route::resource("/api/articles", "ArticleController");
+
+Route::apiResource("/api/articles", "Api/ArticleController");
