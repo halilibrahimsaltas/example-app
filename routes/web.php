@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SupportFormController;
-
+use App\Http\Controllers\UserController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -24,3 +24,5 @@ Route::put("user/{id}/guncelle", [ContactController::class, "update"])->name("us
 Route::resource("/api/articles", "ArticleController");
 
 Route::apiResource("/api/articles", "Api/ArticleController");
+
+Route::get("/user/{id}", [UserController::class, "show"])->name("user.show");
