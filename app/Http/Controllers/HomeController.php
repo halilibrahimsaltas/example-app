@@ -6,7 +6,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('front.index');
+
+        $age = 28;
+        $name = "John";
+        $surname = "Doe";
+        $city = "Istanbul";
+        $country = "Turkey";
+        $email = "john.doe@example.com";
+        
+        return view('front.index', compact('age', 'name', 'surname', 'city', 'country', 'email'));
     }
     public function about()
     {

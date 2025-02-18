@@ -12,6 +12,8 @@
     <!-- JSON Viewer CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.10.0/jsoneditor.min.css" rel="stylesheet"
         type="text/css">
+    <!-- CSS dosyaları için doğru yol -->
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     @yield('css')
 </head>
 
@@ -30,6 +32,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- JSON Viewer JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.10.0/jsoneditor.min.js"></script>
+    <!-- JS dosyaları için doğru yol -->
+    <script src="{{ asset('/js/script.js') }}"></script>
 
     <script>
         function formatJSON(data) {
@@ -43,21 +47,13 @@
             return JSON.stringify(data, null, 2);
         }
 
-        // API yanıtlarını otomatik olarak formatla
+        // Sadece API endpoint'lerinde JSON parse işlemi yap
         $(document).ready(function () {
-            console.log('Sayfa içeriği:', document.body.textContent);
-
-            if (document.body.textContent.trim()) {
-                try {
-                    const jsonData = JSON.parse(document.body.textContent);
-                    console.log('Parsed JSON:', jsonData);
-                    document.body.innerHTML = '<pre class="json-response">' + JSON.stringify(jsonData, null, 2) + '</pre>';
-                } catch (e) {
-                    console.error('JSON parse hatası:', e);
-                    document.body.innerHTML = '<pre class="json-response">Hata: JSON parse edilemedi</pre>';
-                }
-            } else {
-                console.log('Sayfa içeriği boş');
+            // Sadece ana içerik alanındaki metni al
+            const content = $('#content').text().trim();
+            if (content) {
+                const jsonData = JSON.parse(content);
+                document.getElementById('content').innerHTML = '<pre class="json-response">' + JSON.stringify(jsonData, null, 2) + '</pre>';
             }
         });
     </script>
