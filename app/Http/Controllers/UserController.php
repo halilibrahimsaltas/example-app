@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -69,7 +70,42 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Kullanıcıyı bul
+        $user = User::find($id);
+        
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Kullanıcı bulunamadı'
+            ], 404);
+        }
+
+        // Validasyon
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id)
+            ]
+        ]);
+
+        try {
+            // Kullanıcıyı güncelle
+            $user->update($validatedData);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Kullanıcı başarıyla güncellendi',
+                'data' => $user
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Güncelleme sırasında bir hata oluştu',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
